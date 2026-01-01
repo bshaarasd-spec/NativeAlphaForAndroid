@@ -24,14 +24,14 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    # التغيير هنا: حددنا النسخة الخاصة بجيت هب فقط
-    - name: Build GitHub Version
-      run: ./gradlew assembleExtendedGithubRelease
+    # التغيير الجوهري هنا: طلبنا نسخة Debug لأنها موقعة وجاهزة للتثبيت
+    - name: Build GitHub Debug Version
+      run: ./gradlew assembleExtendedGithubDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
-        name: NativeAlpha-APK
-        # التغيير هنا: وسعنا البحث ليجد الملف في أي مجلد فرعي
-        path: app/build/outputs/apk/**/*.apk
+        name: NativeAlpha-Debug-APK
+        # سيقوم بالبحث عن ملفات الـ Debug فقط
+        path: app/build/outputs/apk/**/debug/*.apk
         
